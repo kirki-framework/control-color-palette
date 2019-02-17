@@ -11,6 +11,7 @@
 
 namespace Kirki\Control;
 
+use Kirki\Core\Kirki;
 use Kirki\Core\Helper;
 use Kirki\Control\Base;
 
