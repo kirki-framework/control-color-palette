@@ -44,7 +44,7 @@ class Color_Palette extends Base {
 
 		$url = apply_filters(
 			'kirki_package_url_control_color_palette',
-			trailingslashit( Kirki::$url ) . 'packages/kirki-framework/control-color-palette/src'
+			trailingslashit( Kirki::$url ) . 'vendor/kirki-framework/control-color-palette/src'
 		);
 
 		// Enqueue the script.
