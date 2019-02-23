@@ -55,6 +55,7 @@ class Color_Palette extends Base {
 				'kirki-script',
 				'jquery',
 				'customize-base',
+				'kirki-dynamic-control',
 			],
 			KIRKI_VERSION,
 			false
