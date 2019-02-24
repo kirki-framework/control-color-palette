@@ -52,7 +52,6 @@ class Color_Palette extends Base {
 			'kirki-control-color-palette',
 			"$url/assets/scripts/control.js",
 			[
-				'kirki-script',
 				'jquery',
 				'customize-base',
 				'kirki-dynamic-control',
