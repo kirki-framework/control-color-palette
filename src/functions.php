@@ -14,3 +14,4 @@ add_action(
         class_alias( 'Kirki\Control\Color_Palette', 'Kirki_Control_Color_Palette' );
     }
 );
+class_alias( 'Kirki\Field\Color_Palette', 'Kirki_Field_Color_Palette' );
