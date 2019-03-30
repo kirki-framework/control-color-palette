@@ -10,7 +10,7 @@
 
 namespace Kirki\Control;
 
-use Kirki\Core\Kirki;
+use Kirki\URL;
 use Kirki\Core\Material_Colors;
 use Kirki\Control\Base;
 
