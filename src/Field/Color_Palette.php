@@ -11,6 +11,7 @@
 namespace Kirki\Field;
 
 use Kirki\Field;
+use Kirki\Field\React_Color;
 
 /**
  * Field overrides.
@@ -29,58 +30,29 @@ class Color_Palette extends Field {
 	public $type = 'kirki-color-palette';
 
 	/**
-	 * The control class-name.
+	 * Extra logic for the field.
 	 *
-	 * @access protected
-	 * @since 0.1
-	 * @var string
-	 */
-	protected $control_class = '\Kirki\Control\Color_Palette';
-
-	/**
-	 * Whether we should register the control class for JS-templating or not.
-	 *
-	 * @access protected
-	 * @since 0.1
-	 * @var bool
-	 */
-	protected $control_has_js_template = true;
-
-	/**
-	 * Filter arguments before creating the setting.
+	 * Converts this to a react-color control.
 	 *
 	 * @access public
-	 * @since 0.1
-	 * @param array                $args         The field arguments.
-	 * @param WP_Customize_Manager $wp_customize The customizer instance.
-	 * @return array
+	 * @param array $args The arguments of the field.
 	 */
-	public function filter_setting_args( $args, $wp_customize ) {
-		if ( $args['settings'] === $this->args['settings'] ) {
-			$args = parent::filter_setting_args( $args, $wp_customize );
+	public function init( $args = [] ) {
 
-			// Set the sanitize-callback if none is defined.
-			if ( ! isset( $args['sanitize_callback'] ) || ! $args['sanitize_callback'] ) {
-				$args['sanitize_callback'] = 'sanitize_text_field';
-			}
-		}
-		return $args;
-	}
+		// Make sure choices are defined.
+		$args['choices'] = ( ! isset( $args['choices'] ) ) ? [] : $args['choices'];
 
-	/**
-	 * Filter arguments before creating the control.
-	 *
-	 * @access public
-	 * @since 0.1
-	 * @param array                $args         The field arguments.
-	 * @param WP_Customize_Manager $wp_customize The customizer instance.
-	 * @return array
-	 */
-	public function filter_control_args( $args, $wp_customize ) {
-		if ( $args['settings'] === $this->args['settings'] ) {
-			$args         = parent::filter_control_args( $args, $wp_customize );
-			$args['type'] = 'kirki-color-palette';
+		// Set the react component.
+		$args['choices']['formComponent'] = 'CirclePicker';
+
+		// Change size if we have one defined.
+		if ( isset( $args['choices']['size'] ) ) {
+			$args['choices']['circleSize'] = $args['choices']['size'];
 		}
-		return $args;
+
+		// Change the spacing between colors.
+		$args['choices']['circleSpacing'] = ( isset( $args['choices']['circleSpacing'] ) ) ? $args['choices']['circleSpacing'] : 10;
+
+		new React_Color( $args );
 	}
 }
